@@ -1,1 +1,1 @@
-client for saou.
+client for saou. Provides methods for communicating with saou webservice
