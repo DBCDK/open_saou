@@ -1,0 +1,12 @@
+<?php
+/**
+ * Implements hook_ting_client_webservice (@see ting_client.module)
+ * */
+function open_saou_ting_client_webservice() {
+  $ret = array();
+  $ret['saou']['class'] = 'open_saou';
+  $ret['saou']['url'] = 'open_saou_url';
+  $ret['soau']['xsd_url'] = 'open_saou_xsd';
+  $ret['saou']['xsdNamespace'] = array(0=>'http://ws.saouservice.dbc.dk');
+  return $ret;
+}
