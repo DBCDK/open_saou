@@ -41,6 +41,6 @@ function open_saou_form_ting_client_admin_webservices_settings_alter(&$form, &$f
     '#title' => t('saou service XSD URL'),
     '#description' => t('URL to XSD to Open saou webservice , e.g. http://saou.addi.dk/saouWebService/SaouWebService?xsd=1'),
     '#required' => TRUE,
-    '#default_value' => variable_get('ting_recommendation_xsd', ''),
+    '#default_value' => variable_get('open_saou_xsd', ''),
   );
 }
