@@ -5,6 +5,7 @@ class open_saou extends TingClientRequest {
   protected $action;
   protected $pid;
   protected $agencyAndUserIds;
+  protected $municipalityNr;
   protected $outputType;
 
   public function setAction ($value=NULL) {
@@ -13,6 +14,14 @@ class open_saou extends TingClientRequest {
   
   public function getAction () {
     return $this->action;
+  }
+
+  public function getMunicipalityNr(){
+    return$this->municipalityNr;
+  }
+
+  public function setMunicipalityNr($value){
+    $this->municipalityNr = $value;
   }
 
   public function setPid($value){
