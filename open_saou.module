@@ -6,7 +6,7 @@ function open_saou_ting_client_webservice() {
   $ret = array();
   $ret['saou']['class'] = 'open_saou';
   $ret['saou']['url'] = 'open_saou_url';
-  $ret['soau']['xsd_url'] = 'open_saou_xsd';
+  $ret['saou']['xsd_url'] = 'open_saou_xsd';
   $ret['saou']['xsdNamespace'] = array(0=>'http://ws.saouservice.dbc.dk');
   return $ret;
 }
@@ -32,7 +32,7 @@ function open_saou_form_ting_client_admin_webservices_settings_alter(&$form, &$f
   $form['saou']['open_saou_url'] = array(
     '#type' => 'textfield',
     '#title' => t('saou service URL'),
-    '#description' => t('URL to Open saou webservice , e.g. http://saou.addi.dk/saouWebService/SaouWebService?wsdl'),
+    '#description' => t('URL to Open saou webservice , e.g. http://saou.addi.dk:80/saouWebService/SaouWebService'),
     '#required' => TRUE,
     '#default_value' => variable_get('open_saou_url', ''),
   );
@@ -44,3 +44,26 @@ function open_saou_form_ting_client_admin_webservices_settings_alter(&$form, &$f
     '#default_value' => variable_get('open_saou_xsd', ''),
   );
 }
+
+/** execute FetchLicenseByPidRequest.
+ *
+ * @param $pid
+ * @param array $agencyAndUserIds; MUST be of the form: array('agencyUserId'=>array($agencyId, $userId))
+ * @param $municipalityNr
+ *
+ * @return string(xml) whatever response service delivers
+ */
+function open_saou_FetchLicenseByPid($pid, array $agencyAndUserIds, $municipalityNr){
+  $fetchLicensesByPidRequest = array(
+    'pid' => $pid,
+    'agencyAndUserIds' => $agencyAndUserIds,
+    'municipalityNr' => $municipalityNr,
+  );
+
+  $params['FetchLicenseByPid'] = $fetchLicensesByPidRequest;
+  $client = new ting_client_class();
+  $response = $client->do_request('saou', $params);
+
+  return $response;
+}
+
