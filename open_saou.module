@@ -1,4 +1,9 @@
 <?php
+
+/**
+ * Developer note: best documentation found: http://wiki.dbc.dk/bin/view/Net/SaouProjektWiki
+ */
+
 /**
  * Implements hook_ting_client_webservice (@see ting_client.module)
  * */
@@ -45,7 +50,7 @@ function open_saou_form_ting_client_admin_webservices_settings_alter(&$form, &$f
   );
 }
 
-/** execute FetchLicenseByPidRequest.
+/** execute FetchLicenseByPidRequest.Fetch all allowed ressource by given pid
  *
  * @param $pid
  * @param array $agencyAndUserIds; MUST be of the form: array('agencyUserId'=>array($agencyId, $userId))
@@ -53,7 +58,6 @@ function open_saou_form_ting_client_admin_webservices_settings_alter(&$form, &$f
  *
  * @return string(xml) whatever response service delivers
  */
-
 /*
  developer note. Can not make this one work -- where to get municipalityNr
  */
@@ -92,6 +96,11 @@ function open_saou_FetchAgencyIdsByBaseIdent($baseIdent){
   return open_saou_do_request($params);
 }
 
+/** Execute saou request from given parameters
+ *
+ * @param $params
+ * @return string(xml)
+ */
 function open_saou_do_request($params){
   $client = new ting_client_class();
   $response = $client->do_request('saou', $params);

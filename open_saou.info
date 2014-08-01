@@ -1,5 +1,5 @@
 name = OpenSAOU Client
-description = Provides information on access to restricted ressources
+description = Provides information on access to restricted ressources (SAOU = Service for Authentication of Objects and Users)
 core = 7.x
 version = 7.x-0.1
 package = Bibliotek.dk
