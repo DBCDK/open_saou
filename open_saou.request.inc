@@ -7,6 +7,20 @@ class open_saou extends TingClientRequest {
   protected $agencyAndUserIds;
   protected $municipalityNr;
   protected $outputType;
+  protected $fetchLicensesByPidRequest;
+
+
+  public function getClientType(){
+    return 'SOAPCLIENT';
+  }
+
+  public function getFetchLicensesByPidRequest(){
+    return $this->fetchLicensesByPidRequest;
+  }
+
+  public function setFetchLicensesByPidRequest($value){
+    $this->fetchLicensesByPidRequest = $value;
+  }
 
   public function setAction ($value=NULL) {
     $this->action = $value;
@@ -49,8 +63,7 @@ class open_saou extends TingClientRequest {
   }
 
   public function getRequest() {
-    $this->setParameter('action', 'libraryListFromServiceNameRequest');
-    $params = array('serviceName', 'outputType');
+    $params = array('fetchLicensesByPidRequest');
     foreach ($params as $parameter) {
       $getter = 'get' . ucfirst($parameter);
       if ($value = $this->$getter()) {
