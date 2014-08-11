@@ -1,7 +1,11 @@
 <?php
-
 /**
- * Developer note: best documentation found: http://wiki.dbc.dk/bin/view/Net/SaouProjektWiki
+ * Developer notes:
+ * best documentation found: http://wiki.dbc.dk/bin/view/Net/SaouProjektWiki
+ * Example client: http://saou.addi.dk/saouservice-web/index.jsp
+ * Flow diagram : http://wiki.dbc.dk/pub/Net/SaouProjektWiki/SAOU.pdf
+ *
+ * soqpUI is also en excellent example client
  */
 
 /**
@@ -11,8 +15,6 @@ function open_saou_ting_client_webservice() {
   $ret = array();
   $ret['saou']['class'] = 'open_saou';
   $ret['saou']['url'] = 'open_saou_url';
-  $ret['saou']['xsd_url'] = 'open_saou_xsd';
-  $ret['saou']['xsdNamespace'] = array(0=>'http://ws.saouservice.dbc.dk');
   return $ret;
 }
 
@@ -36,8 +38,8 @@ function open_saou_form_ting_client_admin_webservices_settings_alter(&$form, &$f
   );
   $form['saou']['open_saou_url'] = array(
     '#type' => 'textfield',
-    '#title' => t('saou service URL'),
-    '#description' => t('URL to Open saou webservice , e.g. http://saou.addi.dk:80/saouWebService/SaouWebService'),
+    '#title' => t('saou service wsdl URL'),
+    '#description' => t('URL to Open saou webservice wsdl , e.g. http://saou.addi.dk:80/saouWebService/SaouWebService?wsdl'),
     '#required' => TRUE,
     '#default_value' => variable_get('open_saou_url', ''),
   );
@@ -67,8 +69,8 @@ function open_saou_FetchLicenseByPid($pid, array $agencyAndUserIds, $municipalit
     'agencyAndUserIds' => $agencyAndUserIds,
     'municipalityNr' => $municipalityNr,
   );
-
-  $params['FetchLicenseByPid'] = $fetchLicensesByPidRequest;
+  $params['action'] = 'FetchLicenseByPid';
+  $params['fetchLicensesByPidRequest'] = $fetchLicensesByPidRequest;
   return open_saou_do_request($params);
 }
 
