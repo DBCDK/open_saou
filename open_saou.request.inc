@@ -1,6 +1,6 @@
 <?php
 
-class open_saou extends TingClientRequest {
+class open_saou extends TingClientRequest implements ITingClientRequestCache {
   
   protected $action;
   protected $pid;
@@ -9,6 +9,24 @@ class open_saou extends TingClientRequest {
   protected $outputType;
   protected $fetchLicensesByPidRequest;
 
+
+  /** \brief ITingClientRequestCache::cacheEnable; Check if cache is enabled
+   *
+   * @return value of variable (drupal_get)
+   **/
+  public function cacheEnable($value = NULL) {
+    $class_name = get_class($this);
+    return variable_get($class_name . TingClientRequest::cache_enable, FALSE);
+  }
+
+  /** \brief set timeout of cache
+   *
+   * @return mixed value of variable (variable_get)
+   **/
+  public function cacheTimeout($value = NULL) {
+    $class_name = get_class($this);
+    return variable_get($class_name . TingClientRequest::cache_lifetime, '1');
+  }
 
   public function getClientType(){
     return 'SOAPCLIENT';
