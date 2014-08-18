@@ -7,7 +7,9 @@ class open_saou extends TingClientRequest implements ITingClientRequestCache {
   protected $agencyAndUserIds;
   protected $municipalityNr;
   protected $outputType;
+  protected $url;
   protected $fetchLicensesByPidRequest;
+  protected $fetchLisensesByUrlRequest;
 
 
   /** \brief ITingClientRequestCache::cacheEnable; Check if cache is enabled
@@ -31,6 +33,23 @@ class open_saou extends TingClientRequest implements ITingClientRequestCache {
   public function getClientType(){
     return 'SOAPCLIENT';
   }
+
+  public function getUrl(){
+    return $this->url;
+  }
+
+  public function setUrl($value){
+    $this->url = $value;
+  }
+
+  public function getFetchLicensesByUrlRequest(){
+    return $this->fetchLicensesByUrlRequest;
+  }
+
+  public function setFetchLicensesByUrlRequest($value){
+    $this->fetchLicensesByUrlRequest = $value;
+  }
+
 
   public function getFetchLicensesByPidRequest(){
     return $this->fetchLicensesByPidRequest;
@@ -81,7 +100,7 @@ class open_saou extends TingClientRequest implements ITingClientRequestCache {
   }
 
   public function getRequest() {
-    $params = array('fetchLicensesByPidRequest');
+    $params = array('fetchLicensesByPidRequest', 'fetchLicensesByUrlRequest');
     foreach ($params as $parameter) {
       $getter = 'get' . ucfirst($parameter);
       if ($value = $this->$getter()) {
