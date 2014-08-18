@@ -74,6 +74,25 @@ function open_saou_FetchLicenseByPid($pid, array $agencyAndUserIds, $municipalit
   return open_saou_do_request($params);
 }
 
+/** Do FetchLicenseByUrl request. Fetch licenses for given params
+ * @param $pid
+ * @param $url
+ * @param array $agencyAndUserIds MUST be of the form: array('agencyUserId'=>array($agencyId, $userId))
+ * @param $municipalityNr .. actually agencyid
+ * @return string (xml) response from SAOU webservice
+ */
+function open_saou_FetchLicenseByUrl($pid, $url, array $agencyAndUserIds, $municipalityNr){
+  $fetchLicensesByUrlRequest = array(
+    'pid' => $pid,
+    'url' => $url,
+    'agencyAndUserIds' => $agencyAndUserIds,
+    'municipalityNr' => $municipalityNr,
+  );
+  $params['action'] = 'FetchLicensesByUrl';
+  $params['fetchLicensesByUrlRequest'] = $fetchLicensesByUrlRequest;
+  return open_saou_do_request($params);
+}
+
 /** Do FetchLicensesByAgencyId request. Fetch all allowed ressource by given agencyID
  * @param $agencyId
  * @return string(xml)
