@@ -4,8 +4,6 @@ class open_saou extends TingClientRequest implements ITingClientRequestCache {
   
   protected $action;
   protected $pid;
-  protected $agencyAndUserIds;
-  protected $municipalityNr;
   protected $outputType;
   protected $url;
   protected $fetchLicensesByPidRequest;
@@ -67,28 +65,12 @@ class open_saou extends TingClientRequest implements ITingClientRequestCache {
     return $this->action;
   }
 
-  public function getMunicipalityNr(){
-    return$this->municipalityNr;
-  }
-
-  public function setMunicipalityNr($value){
-    $this->municipalityNr = $value;
-  }
-
   public function setPid($value){
     $this->pid = $value;
   }
 
   public function getPid(){
     return $this->pid;
-  }
-
-  public function getAgencyAndUserIds(){
-    return $this->agencyAndUserIds;
-  }
-
-  public function setAgencyAndUserIds(array $value){
-    $this->agencyAndUserIds = $value;
   }
 
   public function setOutputType($value = NULL) {

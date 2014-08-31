@@ -60,14 +60,11 @@ function open_saou_form_ting_client_admin_webservices_settings_alter(&$form, &$f
  *
  * @return string(xml) whatever response service delivers
  */
-/*
- developer note. Can not make this one work -- where to get municipalityNr
- */
-function open_saou_FetchLicenseByPid($pid, array $agencyAndUserIds, $municipalityNr){
+function open_saou_FetchLicenseByPid($pid, array $agencyAndUserIds, $municipalityAgency){
   $fetchLicensesByPidRequest = array(
     'pid' => $pid,
     'agencyAndUserIds' => $agencyAndUserIds,
-    'municipalityNr' => $municipalityNr,
+    'municipalityAgency' => $municipalityAgency,
   );
   $params['action'] = 'FetchLicenseByPid';
   $params['fetchLicensesByPidRequest'] = $fetchLicensesByPidRequest;
@@ -78,15 +75,15 @@ function open_saou_FetchLicenseByPid($pid, array $agencyAndUserIds, $municipalit
  * @param $pid
  * @param $url
  * @param array $agencyAndUserIds MUST be of the form: array('agencyUserId'=>array($agencyId, $userId))
- * @param $municipalityNr .. actually agencyid
+ * @param $municipalityAgency .. actually agencyid
  * @return string (xml) response from SAOU webservice
  */
-function open_saou_FetchLicenseByUrl($pid, $url, array $agencyAndUserIds, $municipalityNr){
+function open_saou_FetchLicenseByUrl($pid, $url, array $agencyAndUserIds, $municipalityAgency){
   $fetchLicensesByUrlRequest = array(
     'pid' => $pid,
     'url' => $url,
     'agencyAndUserIds' => $agencyAndUserIds,
-    'municipalityNr' => $municipalityNr,
+    'municipalityAgency' => $municipalityAgency,
   );
   $params['action'] = 'FetchLicensesByUrl';
   $params['fetchLicensesByUrlRequest'] = $fetchLicensesByUrlRequest;
