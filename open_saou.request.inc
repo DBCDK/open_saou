@@ -1,7 +1,7 @@
 <?php
 
 class open_saou extends TingClientRequest implements ITingClientRequestCache {
-  
+
   protected $action;
   protected $pid;
   protected $outputType;
@@ -9,13 +9,13 @@ class open_saou extends TingClientRequest implements ITingClientRequestCache {
   protected $fetchLicensesByPidRequest;
   protected $fetchLisensesByUrlRequest;
 
-
   /** \brief ITingClientRequestCache::cacheEnable; Check if cache is enabled
    *
    * @return value of variable (drupal_get)
    **/
   public function cacheEnable($value = NULL) {
     $class_name = get_class($this);
+
     return variable_get($class_name . TingClientRequest::cache_enable, FALSE);
   }
 
@@ -25,51 +25,51 @@ class open_saou extends TingClientRequest implements ITingClientRequestCache {
    **/
   public function cacheTimeout($value = NULL) {
     $class_name = get_class($this);
+
     return variable_get($class_name . TingClientRequest::cache_lifetime, '1');
   }
 
-  public function getClientType(){
+  public function getClientType() {
     return 'SOAPCLIENT';
   }
 
-  public function getUrl(){
+  public function getUrl() {
     return $this->url;
   }
 
-  public function setUrl($value){
+  public function setUrl($value) {
     $this->url = $value;
   }
 
-  public function getFetchLicensesByUrlRequest(){
+  public function getFetchLicensesByUrlRequest() {
     return $this->fetchLicensesByUrlRequest;
   }
 
-  public function setFetchLicensesByUrlRequest($value){
+  public function setFetchLicensesByUrlRequest($value) {
     $this->fetchLicensesByUrlRequest = $value;
   }
 
-
-  public function getFetchLicensesByPidRequest(){
+  public function getFetchLicensesByPidRequest() {
     return $this->fetchLicensesByPidRequest;
   }
 
-  public function setFetchLicensesByPidRequest($value){
+  public function setFetchLicensesByPidRequest($value) {
     $this->fetchLicensesByPidRequest = $value;
   }
 
-  public function setAction ($value=NULL) {
+  public function setAction($value = NULL) {
     $this->action = $value;
   }
-  
-  public function getAction () {
+
+  public function getAction() {
     return $this->action;
   }
 
-  public function setPid($value){
+  public function setPid($value) {
     $this->pid = $value;
   }
 
-  public function getPid(){
+  public function getPid() {
     return $this->pid;
   }
 
@@ -89,6 +89,7 @@ class open_saou extends TingClientRequest implements ITingClientRequestCache {
         $this->setParameter($parameter, $value);
       }
     }
+
     return $this;
   }
 

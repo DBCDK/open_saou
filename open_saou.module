@@ -15,6 +15,7 @@ function open_saou_ting_client_webservice() {
   $ret = array();
   $ret['saou']['class'] = 'open_saou';
   $ret['saou']['url'] = 'open_saou_url';
+
   return $ret;
 }
 
@@ -55,12 +56,12 @@ function open_saou_form_ting_client_admin_webservices_settings_alter(&$form, &$f
 /** execute FetchLicenseByPidRequest.Fetch all allowed ressource by given pid
  *
  * @param $pid
- * @param array $agencyAndUserIds; MUST be of the form: array('agencyUserId'=>array($agencyId, $userId))
+ * @param array $agencyAndUserIds ; MUST be of the form: array('agencyUserId'=>array($agencyId, $userId))
  * @param $municipalityNr
  *
  * @return string(xml) whatever response service delivers
  */
-function open_saou_FetchLicenseByPid($pid, array $agencyAndUserIds, $municipalityAgency){
+function open_saou_FetchLicenseByPid($pid, array $agencyAndUserIds, $municipalityAgency) {
   $fetchLicensesByPidRequest = array(
     'pid' => $pid,
     'agencyAndUserIds' => $agencyAndUserIds,
@@ -68,6 +69,7 @@ function open_saou_FetchLicenseByPid($pid, array $agencyAndUserIds, $municipalit
   );
   $params['action'] = 'FetchLicenseByPid';
   $params['fetchLicensesByPidRequest'] = $fetchLicensesByPidRequest;
+
   return open_saou_do_request($params);
 }
 
@@ -78,7 +80,7 @@ function open_saou_FetchLicenseByPid($pid, array $agencyAndUserIds, $municipalit
  * @param $municipalityAgency .. actually agencyid
  * @return string (xml) response from SAOU webservice
  */
-function open_saou_FetchLicenseByUrl($pid, $url, array $agencyAndUserIds, $municipalityAgency){
+function open_saou_FetchLicenseByUrl($pid, $url, array $agencyAndUserIds, $municipalityAgency) {
   $fetchLicensesByUrlRequest = array(
     'pid' => $pid,
     'url' => $url,
@@ -87,6 +89,7 @@ function open_saou_FetchLicenseByUrl($pid, $url, array $agencyAndUserIds, $munic
   );
   $params['action'] = 'FetchLicensesByUrl';
   $params['fetchLicensesByUrlRequest'] = $fetchLicensesByUrlRequest;
+
   return open_saou_do_request($params);
 }
 
@@ -94,7 +97,7 @@ function open_saou_FetchLicenseByUrl($pid, $url, array $agencyAndUserIds, $munic
  * @param $agencyId
  * @return string(xml)
  */
-function open_saou_FetchLicensesByAgencyId($agencyId){
+function open_saou_FetchLicensesByAgencyId($agencyId) {
   $params['FetchLicensesByAgencyId'] = array(
     'AgencyId' => $agencyId,
   );
@@ -106,7 +109,7 @@ function open_saou_FetchLicensesByAgencyId($agencyId){
  * @param $baseIdent (string)
  * @return string(xml)
  */
-function open_saou_FetchAgencyIdsByBaseIdent($baseIdent){
+function open_saou_FetchAgencyIdsByBaseIdent($baseIdent) {
   $params['FetchAgencyIdsByBaseIdent'] = array(
     'BaseId' => $baseIdent,
   );
@@ -119,7 +122,7 @@ function open_saou_FetchAgencyIdsByBaseIdent($baseIdent){
  * @param $params
  * @return string(xml)
  */
-function open_saou_do_request($params){
+function open_saou_do_request($params) {
   $client = new ting_client_class();
   $response = $client->do_request('saou', $params);
 
