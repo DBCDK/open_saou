@@ -44,13 +44,6 @@ function open_saou_form_ting_client_admin_webservices_settings_alter(&$form, &$f
     '#required' => TRUE,
     '#default_value' => variable_get('open_saou_url', ''),
   );
-  $form['saou']['open_saou_xsd'] = array(
-    '#type' => 'textfield',
-    '#title' => t('saou service XSD URL'),
-    '#description' => t('URL to XSD to Open saou webservice , e.g. http://saou.addi.dk/saouWebService/SaouWebService?xsd=1'),
-    '#required' => TRUE,
-    '#default_value' => variable_get('open_saou_xsd', ''),
-  );
 }
 
 /** execute FetchLicenseByPidRequest.Fetch all allowed ressource by given pid
