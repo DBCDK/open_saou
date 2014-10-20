@@ -73,9 +73,10 @@ function open_saou_FetchLicenseByPid($pid, array $agencyAndUserIds, $municipalit
  * @param $municipalityAgency .. actually agencyid
  * @return string (xml) response from SAOU webservice
  */
-function open_saou_FetchLicenseByUrl($pid, $url, array $agencyAndUserIds, $municipalityAgency) {
+function open_saou_FetchLicenseByUrl($pid, $url, array $agencyAndUserIds, $municipalityAgency, $alt_pid = NULL) {
+  $id = isset($alt_pid) ? $alt_pid : $pid;
   $fetchLicensesByUrlRequest = array(
-    'pid' => $pid,
+    'pid' => $id,
     'url' => $url,
     'agencyAndUserIds' => $agencyAndUserIds,
     'municipalityAgency' => $municipalityAgency,
