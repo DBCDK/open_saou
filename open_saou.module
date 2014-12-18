@@ -1,11 +1,7 @@
 <?php
 /**
- * Developer notes:
- * best documentation found: http://wiki.dbc.dk/bin/view/Net/SaouProjektWiki
- * Example client: http://saou.addi.dk/saouservice-web/index.jsp
- * Flow diagram : http://wiki.dbc.dk/pub/Net/SaouProjektWiki/SAOU.pdf
- *
- * soqpUI is also en excellent example client
+ * @file
+ * module file for soau client
  */
 
 /**
@@ -13,13 +9,14 @@
  * */
 function open_saou_ting_client_webservice() {
   $ret = array();
-  $ret['saou']['class'] = 'open_saou';
+  $ret['saou']['class'] = 'OpenSaou';
   $ret['saou']['url'] = 'open_saou_url';
 
   return $ret;
 }
 
-/** Implements hook_formID_alter
+/**
+ * Implements hook_formID_alter
  *
  * Adds settings for adhl service client
  *
@@ -46,7 +43,8 @@ function open_saou_form_ting_client_admin_webservices_settings_alter(&$form, &$f
   );
 }
 
-/** execute FetchLicenseByPidRequest.Fetch all allowed ressource by given pid
+/**
+ * execute FetchLicenseByPidRequest.Fetch all allowed ressource by given pid
  *
  * @param $pid
  * @param array $agencyAndUserIds ; MUST be of the form: array('agencyUserId'=>array($agencyId, $userId))
@@ -66,7 +64,8 @@ function open_saou_FetchLicenseByPid($pid, array $agencyAndUserIds, $municipalit
   return open_saou_do_request($params);
 }
 
-/** Do FetchLicenseByUrl request. Fetch licenses for given params
+/**
+ * Do FetchLicenseByUrl request. Fetch licenses for given params
  * @param $pid
  * @param $url
  * @param array $agencyAndUserIds MUST be of the form: array('agencyUserId'=>array($agencyId, $userId))
@@ -87,7 +86,8 @@ function open_saou_FetchLicenseByUrl($pid, $url, array $agencyAndUserIds, $munic
   return open_saou_do_request($params);
 }
 
-/** Do FetchLicensesByAgencyId request. Fetch all allowed ressource by given agencyID
+/**
+ * Do FetchLicensesByAgencyId request. Fetch all allowed ressource by given agencyID
  * @param $agencyId
  * @return string(xml)
  */
@@ -99,7 +99,8 @@ function open_saou_FetchLicensesByAgencyId($agencyId) {
   return open_saou_do_request($params);
 }
 
-/** Do FetchAgencyIdsByBaseIdent. Get all agencies with access to given identifier
+/**
+ * Do FetchAgencyIdsByBaseIdent. Get all agencies with access to given identifier
  * @param $baseIdent (string)
  * @return string(xml)
  */
@@ -111,7 +112,8 @@ function open_saou_FetchAgencyIdsByBaseIdent($baseIdent) {
   return open_saou_do_request($params);
 }
 
-/** Execute saou request from given parameters
+/**
+ * Execute saou request from given parameters
  *
  * @param $params
  * @return string(xml)

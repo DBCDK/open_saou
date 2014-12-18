@@ -1,6 +1,10 @@
 <?php
 
-class open_saou extends TingClientRequest implements ITingClientRequestCache {
+/**
+ * @file
+ * Class open_saou
+ */
+class OpenSaou extends TingClientRequest implements ITingClientRequestCache {
 
   protected $action;
   protected $pid;
