@@ -9,8 +9,8 @@
  * */
 function open_saou_ting_client_webservice() {
   $ret = array();
-  $ret['saou']['class'] = 'OpenSaou';
-  $ret['saou']['url'] = 'open_saou_url';
+  $ret['OpenSaou']['class'] = 'OpenSaou';
+  $ret['OpenSaou']['url'] = 'OpenSaou_url';
 
   return $ret;
 }
@@ -27,19 +27,19 @@ function open_saou_ting_client_webservice() {
  * @param $form_state
  */
 function open_saou_form_ting_client_admin_webservices_settings_alter(&$form, &$form_state) {
-  $form['saou'] = array(
+  $form['OpenSaou'] = array(
     '#type' => 'fieldset',
     '#title' => 'saou settings',
     '#description' => t('The saou service is used to get atuhentication for restricted ressources'),
     '#collapsible' => TRUE,
     '#tree' => FALSE,
   );
-  $form['saou']['open_saou_url'] = array(
+  $form['OpenSaou']['OpenSaou_url'] = array(
     '#type' => 'textfield',
     '#title' => t('saou service wsdl URL'),
     '#description' => t('URL to Open saou webservice wsdl , e.g. http://saou.addi.dk:80/saouWebService/SaouWebService?wsdl'),
     '#required' => TRUE,
-    '#default_value' => variable_get('open_saou_url', ''),
+    '#default_value' => variable_get('OpenSaou_url', ''),
   );
 }
 
@@ -120,7 +120,7 @@ function open_saou_FetchAgencyIdsByBaseIdent($baseIdent) {
  */
 function open_saou_do_request($params) {
   $client = new ting_client_class();
-  $response = $client->do_request('saou', $params);
+  $response = $client->do_request('OpenSaou', $params);
 
   return $response;
 }
